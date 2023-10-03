@@ -6,7 +6,7 @@ namespace IDM
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("Start Chuong trinh!!");
         }
     }
 }

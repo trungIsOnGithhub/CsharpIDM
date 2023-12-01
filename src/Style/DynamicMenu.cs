@@ -34,6 +34,7 @@ namespace ConsoleApplication
                         Console.WriteLine(array[i]);
                     }
                 }
+
                 bottomOffset = Console.CursorTop;
 
                 key = Console.ReadKey(true);

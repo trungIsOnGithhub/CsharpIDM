@@ -47,10 +47,12 @@ namespace ConsoleApplication
                         Console.WriteLine("The total size of the files within this folder (excluding subfolders) is: " + listSize);
                         Console.WriteLine();
                     }
-                    catch(ArgumentException)
+                    catch(ArgumentException exception)
                     {
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
+                        Console.WriteLine("EXCEPTION: " + exception.Message);
+                        Console.WriteLine("---------------------------------------------");
                     }   
                     DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
@@ -89,10 +91,12 @@ namespace ConsoleApplication
                         Console.WriteLine("The total size of the subfolders within this directory is: " + Utilities.SelectAppropriateFileSizeFormat(totalSize));
                         Console.WriteLine();
                     }
-                    catch(ArgumentException)
+                    catch(ArgumentException exception)
                     {
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
+                        Console.WriteLine("EXCEPTION: " + exception.Message);
+                        Console.WriteLine("---------------------------------------------");
                     } 
                     DynamicMenu.Menu(DynamicMenu.mainMenu, 1); 
                     break;
@@ -125,11 +129,12 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("SUCCESS! Your new index file has been created at " + input + "\\index.txt");
                     }
-                    catch(ArgumentException)
+                    catch(ArgumentException exception)
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("ERROR! Invalid user input!");
+                        Console.WriteLine("EXCEPTION: " + exception.Message);
+                        Console.WriteLine("---------------------------------------------");
                     }
                     DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
@@ -137,8 +142,8 @@ namespace ConsoleApplication
                 case 5:
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine();
-                    Console.WriteLine("GOODBYE!");
+                    Console.Clear();
+                    Console.WriteLine("GOODBYE!!");
                     Console.ForegroundColor = ConsoleColor.White;
                     Environment.Exit(0);
                     break;
@@ -159,7 +164,7 @@ namespace ConsoleApplication
 
                     try
                     {
-                        if(ObjectManager.CheckFileExists(input) == false)
+                        if(ObjectManager.IsExist(input) == false)
                         {
                             ObjectManager.CreateNewFile(input);
                             Console.ForegroundColor = ConsoleColor.Green;

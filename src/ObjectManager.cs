@@ -13,22 +13,20 @@ namespace ConsoleApplication
             DateTime time = info.LastAccessTime;
             return time.ToString("yyyy/MM/dd HH:mm:ss.ff");
         }
-        
-        public static bool CheckFileExists(string filePath)
+
+        public static bool IsExist(string path, bool isDirectory = false)
         {
-            if(File.Exists(filePath))
+            if (isDirectory)
             {
-                return true;
+                return Directory.Exists(path);
             }
-            else
-            {
-                return false;
-            }
+            
+            return File.Exists(path);
         }
     
         public static void ThrowExceptionIfFileDoesntExist(string filePath)
         {
-            if(CheckFileExists(filePath) == false)
+            if (!IsExist(filePath))
             {
                 throw new ArgumentException("This file does not exist");
             }
@@ -37,8 +35,8 @@ namespace ConsoleApplication
         public static long GetSizeOfFile(string filePath)
         {
             ThrowExceptionIfFileDoesntExist(filePath);
-            FileInfo file = new FileInfo(filePath);
-            return file.Length;;
+
+            return ( new FileInfo(filePath) ).Length;
         }
 
         public static string ReadTextFromFile(string filePath)
@@ -111,17 +109,39 @@ namespace ConsoleApplication
 
         public static long GetSizeOfDirectory(string folderPath)
         {
+            // Console.WriteLine("==>" + folderPath);
             ThrowExceptionIfFolderDoesntExist(folderPath);
-            long totalSize = 0;
-            string[] contents = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories);
 
-            foreach (string name in contents)
-            {
-                FileInfo file = new FileInfo(name);
-                totalSize = totalSize + file.Length;
+            long totalSize = 0;
+
+            foreach ( string filename in Directory.GetFiles(folderPath) )
+            {   
+                try
+                {
+                    // Console.WriteLine("----->" + filename);
+                    totalSize += ( new FileInfo(filename) ).Length;
+                }
+                catch (UnauthorizedAccessException exception)
+                {
+                    Console.WriteLine($"Access to file {filename} is denied.");
+                }
             }
+
+            foreach ( string subDir in Directory.GetDirectories(folderPath) )
+            {
+                try
+                {
+                    totalSize += GetSizeOfDirectory(subDir);
+                }
+                catch (UnauthorizedAccessException exception)
+                {
+                    Console.WriteLine("Access to directory is denied.");
+                }
+            }
+
             return totalSize;
         }
+
         public static string[] ListFilesInDirectory(string folderPath)
         {
             ThrowExceptionIfFolderDoesntExist(folderPath);
@@ -168,7 +188,7 @@ namespace ConsoleApplication
 
         public static void CreateNewFile(string filePath)
         {
-            if(CheckFileExists(filePath) == true || !filePath.Contains(@":\"))
+            if(IsExist(filePath) == true || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at this location, or this is not a valid file path");
             }
@@ -185,7 +205,7 @@ namespace ConsoleApplication
         {
             ThrowExceptionIfFileDoesntExist(filePath);
 
-            if(CheckFileExists(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
+            if(IsExist(destinationPath) == true || !destinationPath.Contains(@":\") || !filePath.Contains(@":\"))
             {
                 throw new ArgumentException("A file already exists at the destination path!");
             }
@@ -347,5 +367,7 @@ namespace ConsoleApplication
                 }
             }
         }
+
+        
     }
 }

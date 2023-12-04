@@ -5,25 +5,32 @@ namespace ConsoleApplication
 {
     public static class DynamicMenu
     {
-        public static string[] mainMenu = {"Get list of files in directory", "Get list of folders in directory", "Manage files", "Manage folders", "Generate index file", "Quit" };
-        public static string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
-        public static string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
+        public static readonly string[] mainMenu = {
+            "Get list of files in directory",
+            "Get list of folders in directory",
+            "Manage files", "Manage folders",
+            "Generate index file", "Quit" 
+        };
+        public static readonly string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
+        public static readonly string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
+
+        private static int selectedItemIndex = 0;
 
         public static void Menu(string[] array, int menu)
         {
             bool loopComplete = false;
             int topOffset = Console.CursorTop;
             int bottomOffset = 0;
-            int selectedItem = 0;
-            ConsoleKeyInfo key;
+
+            selectedItemIndex = 0;
 
             Console.CursorVisible = false;
 
-            while(!loopComplete)
+            while (!loopComplete)
             {
                 for (int i = 0; i < array.Length; i ++)
                 {
-                    if (i == selectedItem)
+                    if (i == selectedItemIndex)
                     {
                         Console.BackgroundColor = ConsoleColor.Cyan;
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -38,31 +45,31 @@ namespace ConsoleApplication
 
                 bottomOffset = Console.CursorTop;
 
-                key = Console.ReadKey(true);
+                ConsoleKeyInfo key = Console.ReadKey(true);
 
                 switch(key.Key)
                 {
                     case ConsoleKey.UpArrow:
                     {
-                        if(selectedItem > 0)
+                        if(selectedItemIndex > 0)
                         {
-                            selectedItem--;
+                            selectedItemIndex--;
                         }
                         else
                         {
-                            selectedItem = (array.Length - 1);
+                            selectedItemIndex = (array.Length - 1);
                         }
                         break;
                     }
                     case ConsoleKey.DownArrow:
                     {
-                        if (selectedItem < (array.Length - 1))
+                        if (selectedItemIndex < (array.Length - 1))
                         {
-                            selectedItem++;
+                            selectedItemIndex++;
                         }
                         else
                         {
-                            selectedItem = 0;
+                            selectedItemIndex = 0;
                         }
                         break;
                     }
@@ -88,10 +95,11 @@ namespace ConsoleApplication
                 check = spin.animation();
             }
             
-            selectOptions(selectedItem, menu);
+            selectOptions(selectedItemIndex, menu);
         }
 
-        public static void selectOptions(int selectedItem, int menu)
+
+        public static void selectOptions(int selectedItemIndex, int menu)
         {
             switch(menu)
             {
@@ -100,7 +108,7 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("MAIN MENU");
                     Console.WriteLine();
-                    Options.MainMenuOptions(selectedItem);
+                    Options.MainMenuOptions(selectedItemIndex);
                     break;
                 }
                 case 2:
@@ -110,7 +118,7 @@ namespace ConsoleApplication
                     Console.WriteLine("FILE MANAGER");
                     Console.WriteLine("testing1");
                     Console.WriteLine();
-                    Options.ManageFiles(selectedItem);
+                    Options.ManageFiles(selectedItemIndex);
                     break;
                 }
                 case 3:
@@ -118,7 +126,7 @@ namespace ConsoleApplication
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("FOLDER MANAGER");
                     Console.WriteLine();
-                    Options.ManageFolders(selectedItem);
+                    Options.ManageFolders(selectedItemIndex);
                     break;
                 }
             }

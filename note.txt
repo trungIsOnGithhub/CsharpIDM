@@ -1,1 +1,2 @@
 - "File" class exist in System.IO namespace, contains static method like File.Exists()
+- System.Console.dll, System.IO

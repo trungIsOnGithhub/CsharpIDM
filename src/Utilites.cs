@@ -60,5 +60,34 @@ namespace ConsoleApplication
 
             return systemInfo.ToString();
         }
+
+        public static char filterKey(char character) {
+            if (character == ' ' || character == '?')
+            {
+                return character;
+            }
+
+            int keyInASCII = (int)character;
+
+            if (keyInASCII <= (int)'z' && keyInASCII >= (int)'a')
+            {
+                return character;
+            }
+
+            if (keyInASCII <= (int)'Z' && keyInASCII >= (int)'A')
+            {
+                return character;
+            }
+
+            return '\0';
+        }
+    }
+
+    class KeyVault
+    {
+        public static string getKeyFor(string baseURI)
+        {
+            return "1";
+        }
     }
 }

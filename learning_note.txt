@@ -2,3 +2,5 @@
 - System.Console.dll, System.IO
 - Instance == need "State"(Data to be changed), while Static == no need for State
 - static class vs a namespace
+- Delegates provide late binding mechanism in .NET.
+- Late Binding == an algorithm where caller also supplies part of the algorithm.

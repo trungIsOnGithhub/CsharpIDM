@@ -1,0 +1,4 @@
+- "File" class exist in System.IO namespace, contains static method like File.Exists()
+- System.Console.dll, System.IO
+- Instance == need "State"(Data to be changed), while Static == no need for State
+- static class vs a namespace

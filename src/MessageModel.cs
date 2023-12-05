@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace ConsoleApplication
 {
@@ -103,13 +105,15 @@ namespace ConsoleApplication
             catch(HttpRequestException exception)
             {
                 Console.WriteLine($"EXCEPTION: {exception.Message}");
+                return;
             }
 
             Console.WriteLine($"RESPONSE: |{responseContent.GetType()}|");
 
-            CocktailList cocktailList = JsonConvert.DeserializeObject<CocktailList>(responseContent);
+            // Turn a Json string parsed into an Ienumerable and perform LinQ
+            JObject cocktailList = AllChildren(JObject.Parse());
 
-            Console.WriteLine($"LENGTH : {cocktailList.drinks.Length}");
+            // Console.WriteLine($"LENGTH : {cocktailList.drinks.Length}");
         }
     }
 }

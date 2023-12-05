@@ -86,13 +86,13 @@ namespace ConsoleApplication
             Console.CursorVisible = true;
 
             ConsoleAnimation spin = new ConsoleAnimation();
-            bool check = true;
+            bool playingAnimation = true;
 
-            while(check == true)
+            while (playingAnimation)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Thread.Sleep(30);
-                check = spin.animation();
+                playingAnimation = spin.animation();
             }
             
             selectOptions(selectedItemIndex, menu);

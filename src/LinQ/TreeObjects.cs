@@ -2,37 +2,38 @@ using System.Linq;
 
 namespace Tree
 {
-    interface ITreeNode : INullable
+    public class TreeNode
     {
-        public string Name;
-        public ITreeNode Parent;
+        public string Value { get; set; }
+        public TreeNode Parent { get; set; }
     }
 
-    class MultiTreeNode : ITreeNode
+    public class MultiTreeNode : TreeNode
     {
         public IEnumerable<MultiTreeNode> Childs;
 
         public IEnumerable<string> GetChildsName()
         {
-            return (from child in Childs select child.Name);
+            return (from child in Childs select child.Value);
         }
     }
 
-    class FileTreeNode : MultiTree
+    public class FileTreeNode : MultiTree
     {
+        public IEnumerable<FileTreeNode> Childs;
         public double sizeMB;
     }
 
 
 
-    class MultiTree
+    public class MultiTree
     {
-        public MultiTreeNode Root { get; set; };
+        public MultiTreeNode Root { get; set; }
     }
 
-    class FileTree
+    public class FileTree
     {
-        public FileTreeNode Root { get; set; };
+        public FileTreeNode Root { get; set; }
 
         public double getTotalSizeMB()
         {

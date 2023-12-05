@@ -102,7 +102,7 @@ namespace ConsoleApplication
 
                 responseContent = await response.Content.ReadAsStringAsync();
             }
-            catch(HttpRequestException exception)
+            catch(Exception exception)
             {
                 Console.WriteLine($"EXCEPTION: {exception.Message}");
                 return;
@@ -110,10 +110,20 @@ namespace ConsoleApplication
 
             Console.WriteLine($"RESPONSE: |{responseContent.GetType()}|");
 
-            // Turn a Json string parsed into an Ienumerable and perform LinQ
-            JObject cocktailList = AllChildren(JObject.Parse());
+            IEnumerable<Cocktail> cocktailList = getCocktaiListFromJson(responseContent);
 
+            cocktailList.Where(cocktail => cocktail.strAlcoholic == "alcoholic")
+                        .ToList().ForEach(cocktail => Console.WriteLine(cocktail.strDrink));
             // Console.WriteLine($"LENGTH : {cocktailList.drinks.Length}");
+        }
+
+        public static IEnumerable<Cocktail> getCocktaiListFromJson(string json)
+        {
+            JObject jsonObject = JObject.Parse(json);
+
+            JArray array = (JArray)jsonObject["drinks"];
+
+            return array.Select(obj => obj.ToObject<Cocktail>());
         }
     }
 }

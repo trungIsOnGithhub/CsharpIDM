@@ -4,14 +4,14 @@ namespace Tree
 {
     public class Utilities
     {
-        public static IEnumerable<TreeNode> FlattenRootsByValue(
+        public static IEnumerable<MultiTreeNode> FlattenRootsByValue(
             IEnumerable<MultiTreeNode> rootList, string value )
         {
             return rootList
                         .SelectMany(
-                            root => FlattenRootsByValue(root.Elements)
+                            root => FlattenRootsByValue(root.Childs, value)
                         ).Concat(
-                            rootList.Filter(root => root.Value == value)
+                            rootList.Where(root => root.Value == value)
                         );
         }
     }

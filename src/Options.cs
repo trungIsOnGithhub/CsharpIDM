@@ -471,17 +471,6 @@ namespace ConsoleApplication
                     DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
                     break;
                 }
-                //Alien Easter Egg
-                case 5:
-                {
-                    string alien = ObjectManager.ReadTextFromFile(@"c:\Projects\App1\easteregg\alien2.txt");
-                    Console.Clear();
-                    Console.SetWindowSize(80, 50);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine(alien);
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
-                    break;
-                }
             }
         }
     }

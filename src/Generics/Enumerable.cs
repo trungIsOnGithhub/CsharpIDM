@@ -2,7 +2,7 @@ using System.Text;
 
 namespace Generics
 {
-    class EnumerablePrint<T>   
+    class EnumerablePrinter<T>   
     {
         public static void printEnumerableByLine(IEnumerable<T> enummerable)
         {

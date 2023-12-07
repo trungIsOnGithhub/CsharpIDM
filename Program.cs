@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using CocktailModule;
+using Events;
+using Tuple;
 
 namespace ConsoleApplication
 {
@@ -35,19 +37,36 @@ namespace ConsoleApplication
                 charBuffer.Append(keyRead);
 
                 Console.Write(keyRead);
+                
+                SpaceKeyEventPublisher publisherForSpaceKey = new();
+                EnterKeyEventPublisher publisherForEnterKey = new();
+
+                var subcriber = GenericFactory<
+                    (SpaceKeyEventPublisher, EnterKeyEventPublisher),
+                    KeyBoardEventSubcriber
+                >.CreateWith2Args( (publisherForSpaceKey, publisherForEnterKey) );
+
+                subcriber.SubcribeEventSpaceKey();
 
                 if (keyPress.Key == ConsoleKey.Enter)
                 {
                     // string line = Console.ReadLine();
-                    Console.WriteLine();
-                    CocktailModel model = new CocktailModel { VersionString = "v1" };
-                    model.getCocktailByFirstLetter(charBuffer[0]);
-                    Console.WriteLine();
+                    // Console.WriteLine();
+                    // CocktailModel model = new CocktailModel { VersionString = "v1" };
+                    // model.getCocktailByFirstLetter(charBuffer[0]);
+                    // Console.WriteLine();
 
                     // MessageModel.save(charBuffer.ToString());
+
+                    // EnterKeyEventPublisher.ReceiveKey();
+
                     Console.WriteLine();
                     Console.WriteLine($"Enter Pressed: {charBuffer.ToString()}");
                     // break;
+                }
+                else if (keyPress.Key == ConsoleKey.Spacebar)
+                {
+                    publisherForSpaceKey.ReceiveKey();
                 }
             }
         }

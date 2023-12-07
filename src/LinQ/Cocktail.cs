@@ -6,6 +6,8 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net.Http.Headers;
+using System.Collections.Generic;
+using Delegates;
 
 namespace CocktailModule
 {
@@ -71,9 +73,11 @@ namespace CocktailModule
 
             // Console.WriteLine($"RESPONSE: |{responseContent.GetType()}|");
 
-            IEnumerable<Cocktail> cocktails = getCocktaiListFromJson(responseContent);
-
-            EnumerablePrint<Cocktail>.printEnumerableByComma(cocktails);
+            EnumerablePrinter<Cocktail>.printEnumerableByComma(
+                EnumerableSorter<Cocktail>.Sort(
+                    getCocktaiListFromJson(responseContent), cocktailCompareByNameLength
+                )
+            );
 
             // cocktailList.Where(cocktail => cocktail.strAlcoholic == "alcoholic")
                         // .ToList().ForEach(cocktail => Console.WriteLine(cocktail.strDrink));
@@ -87,6 +91,14 @@ namespace CocktailModule
             JArray array = (JArray)jsonObject["drinks"];
 
             return array.Select(obj => obj.ToObject<Cocktail>());
+        }
+
+
+        private static int cocktailCompareByNameLength(Cocktail param1, Cocktail param2)
+        {
+            int param1StrLength = param1.ToString().Length,
+                    param2StrLength = param2.ToString().Length;
+            return param1StrLength >= param2StrLength ? 1 : -1;
         }
     }
 }

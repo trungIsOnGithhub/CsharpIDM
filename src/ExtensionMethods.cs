@@ -11,14 +11,16 @@ namespace ExtensionMethods
 
         public static string FileSize(this string filePath)
         {
-            long answer = ObjectManager.GetSizeOfFile(filePath);
-            return Utilities.SelectAppropriateFileSizeFormat(answer);
+            return Utilities.SelectAppropriateFileSizeFormat(
+                ObjectManager.GetSizeOfFile(filePath)
+            );
         }
 
         public static string FolderSize(this string folderPath)
         {
-            long answer = ObjectManager.GetSizeOfDirectory(folderPath);
-            return Utilities.SelectAppropriateFileSizeFormat(answer);
+            return Utilities.SelectAppropriateFileSizeFormat(
+                ObjectManager.GetSizeOfDirectory(folderPath)
+            );
         }
 
         public static string LastAccess(this string path)

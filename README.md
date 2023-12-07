@@ -8,7 +8,11 @@
 
 ## Generics
 
+### Bounded Generics
+
 ## Events
+
+## Tuple (> C# 7)
 
 This console application was created for the purpose of learning the C# language. It enable user with some(and maybe more) functionalities:
 

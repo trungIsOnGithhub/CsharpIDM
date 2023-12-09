@@ -99,7 +99,7 @@ namespace ConsoleApplication
             Console.SetCursorPosition(0, bottomOffset);
             Console.CursorVisible = true;
 
-            (new ConsoleAnimation{ animatedChar = '/' }).play(40);
+            (new ConsoleAnimation{ animatedChar = Program.getLoadingAnimationCharacter() }).play(40);
             
             selectOptions(selectedItemIndex, menu);
         }

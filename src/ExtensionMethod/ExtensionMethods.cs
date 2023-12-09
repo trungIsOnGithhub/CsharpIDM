@@ -2,7 +2,7 @@ using ConsoleApplication;
 
 namespace ExtensionMethods
 {
-    public static class ObjectExtensionClass
+    public static class StringExtension
     {
         public static string Name(this string filePath)
         {

@@ -1,4 +1,6 @@
 using System.Text;
+using System.Collections;
+using System.Runtime.CompilerServices;
 
 namespace Tuple
 {
@@ -49,58 +51,62 @@ namespace Tuple
         }
     }
 
-    public class EquationFactory<T1, T2>
-        where T1 : System.ValueTuple<int, int, int, string>
-        where T2 : QuadraticEquation
+    public class QuadraticEquationFactory<T1>
+        where T1 : IStructuralEquatable, IStructuralComparable, IComparable, ITuple
     {
-        public static T2 CreateWith4Args(T1 dataTuple)
+        public static QuadraticEquation CreateWith4Args(T1 dataTuple)
         {
-            return new T2{
-                A = dataTuple.Item1,
-                B = dataTuple.Item2,
-                C = dataTuple.Item3,
-                Variable = dataTuple.Item4
+            return new QuadraticEquation
+            {
+                A = (int)dataTuple[0],
+                B = (int)dataTuple[1],
+                C = (int)dataTuple[2],
+                Variable = (string)dataTuple[3]
             };
         }
 
-        public static T2 CreateWith3Args(T1 dataTuple)
+        public static QuadraticEquation CreateWith3Args(T1 dataTuple)
         {
-            return new T2{
-                A = dataTuple.Item1,
-                B = dataTuple.Item2,
-                C = dataTuple.Item3,
+            return new QuadraticEquation
+            {
+                A = (int)dataTuple[0],
+                B = (int)dataTuple[1],
+                C = (int)dataTuple[2],
                 Variable = "x"
             };
         }
 
-        public static T2 CreateWith2Args(T1 dataTuple)
+        public static QuadraticEquation CreateWith2Args(T1 dataTuple)
         {
-            return new T2{
-                A = dataTuple.Item1,
-                B = dataTuple.Item2,
+            return new QuadraticEquation
+            {
+                A = (int)dataTuple[0],
+                B = (int)dataTuple[1],
                 C = 0,
                 Variable = "x"
             };
         }
 
-        public static T2 CreateWith1Args(T1 dataTuple)
+        public static QuadraticEquation CreateWith1Args(T1 dataTuple)
         {
-            return new T2(
-                A = dataTuple.Item1,
+            return new QuadraticEquation
+            {
+                A = (int)dataTuple[0],
                 B = 0,
                 C = 0,
                 Variable = "x"
-            );
+            };
         }
 
-        public static T2 CreateWithNoArgs(T1 dataTuple)
+        public static QuadraticEquation CreateWithNoArgs(T1 dataTuple)
         {
-            return new T2(
+            return new QuadraticEquation
+            {
                 A = 0,
                 B = 0,
                 C = 0,
                 Variable = "x"
-            );
+            };
         }
     }
 }

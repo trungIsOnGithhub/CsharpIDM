@@ -9,7 +9,7 @@ namespace ConsoleApplication
 
         public int lineLength { get; } = 12;
 
-        public int animatedChar { get; set; }
+        public char animatedChar { get; set; }
 
             // public static readonly string[] SpinnerAnimationFrames = new[] 
             // {

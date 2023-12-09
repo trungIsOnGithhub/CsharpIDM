@@ -8,6 +8,8 @@ namespace ConsoleApplication
 {
     public class Program
     {
+        private static char animatedChar = '*';
+
         public static void Main(string[] args)
         {   
             Console.Clear();
@@ -72,6 +74,16 @@ namespace ConsoleApplication
             //         // publisherForSpaceKey.ReceiveKey();
             //     }
             // }
+        }
+
+        public static void setAnimatedCharacterForLoadingAnimation(char toSet)
+        {
+            animatedChar = toSet;
+        }
+
+        public static char getLoadingAnimationCharacter()
+        {
+            return animatedChar;
         }
     }
 }

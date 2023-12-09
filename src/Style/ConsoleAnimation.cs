@@ -1,59 +1,93 @@
 using System;
+using System.Text;
 
 namespace ConsoleApplication
 {
     public class ConsoleAnimation
     {
-        private int currentAnimationFrame;
+        public int currentAnimationFrame { get; set; }
 
-        // public ConsoleAnimation()
-        // {
-            public static readonly string[] SpinnerAnimationFrames = new[] 
-            {
-                "....................",
-                "|...................",
-                "||..................",
-                "|||.................",
-                "||||................",
-                "|||||...............",
-                "||||||..............",
-                "|||||||.............",
-                "||||||||............",
-                "|||||||||...........",
-                "||||||||||..........",
-                "|||||||||||.........",
-                "||||||||||||........",
-                "|||||||||||||.......",
-                "||||||||||||||......",
-                "|||||||||||||||.....",
-                "||||||||||||||||....",
-                "|||||||||||||||||...",
-                "||||||||||||||||||..",
-                "|||||||||||||||||||.",
-                "||||||||||||||||||||"
-            };
+        public int lineLength { get; } = 12;
+
+        public int animatedChar { get; set; }
+
+            // public static readonly string[] SpinnerAnimationFrames = new[] 
+            // {
+            //     "....................",
+            //     "|...................",
+            //     "||..................",
+            //     "|||.................",
+            //     "||||................",
+            //     "|||||...............",
+            //     "||||||..............",
+            //     "|||||||.............",
+            //     "||||||||............",
+            //     "|||||||||...........",
+            //     "||||||||||..........",
+            //     "|||||||||||.........",
+            //     "||||||||||||........",
+            //     "|||||||||||||.......",
+            //     "||||||||||||||......",
+            //     "|||||||||||||||.....",
+            //     "||||||||||||||||....",
+            //     "|||||||||||||||||...",
+            //     "||||||||||||||||||..",
+            //     "|||||||||||||||||||.",
+            //     "||||||||||||||||||||"
+            // };
         // }
+
+        private void printAnimationLine(int lineIndex)
+        {
+            StringBuilder sb = new StringBuilder(String.Empty);
+
+            for (int count = 0; count < lineIndex; ++count)
+            {
+                sb.Append(animatedChar);
+            }
+
+            for (int count = 0; count < lineLength-lineIndex; ++count)
+            {
+                sb.Append('.');
+            }
+
+            Console.WriteLine(sb.ToString());
+        }
         
-        public bool animation()
+        private bool animation()
         {
             Console.CursorVisible = false;
 
-            var left = Console.CursorLeft;
-            var top = Console.CursorTop;
-
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(SpinnerAnimationFrames[currentAnimationFrame]);
+
+            printAnimationLine(currentAnimationFrame);
+
             Console.ForegroundColor = ConsoleColor.White;
 
-            currentAnimationFrame++;
-            if(currentAnimationFrame == SpinnerAnimationFrames.Length)
+            ++currentAnimationFrame;
+
+            if (currentAnimationFrame == lineLength)
             {
                 currentAnimationFrame = 0;
             }
 
-            Console.SetCursorPosition(left, top);
+            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
 
             return currentAnimationFrame > 0 ? true : false;
+        }
+
+        public void play(int duration)
+        {
+            bool playingAnimation = true;
+
+            currentAnimationFrame = 0;
+
+            while (playingAnimation)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Thread.Sleep(duration);
+                playingAnimation = this.animation();
+            }
         }
     }
 }

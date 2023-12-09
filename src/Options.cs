@@ -54,7 +54,7 @@ namespace ConsoleApplication
                         Console.WriteLine("EXCEPTION: " + exception.Message);
                         Console.WriteLine("---------------------------------------------");
                     }   
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }   
                 case 1: 
@@ -98,7 +98,7 @@ namespace ConsoleApplication
                         Console.WriteLine("EXCEPTION: " + exception.Message);
                         Console.WriteLine("---------------------------------------------");
                     } 
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1); 
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1); 
                     break;
                 }
                 case 2:
@@ -106,14 +106,14 @@ namespace ConsoleApplication
                     Console.WriteLine("another test");
                     Console.Clear();
                     Console.WriteLine("FILE MANAGER");
-                    DynamicMenu.Menu(DynamicMenu.filesMenu, 2);
+                    DynamicMenu.Menu(DynamicMenuOption.filesMenu, 2);
                     break;
                 }
                 case 3:
                 {
                     Console.Clear();
                     Console.WriteLine("FOLDER MANAGER");
-                    DynamicMenu.Menu(DynamicMenu.foldersMenu, 3);
+                    DynamicMenu.Menu(DynamicMenuOption.foldersMenu, 3);
                     break;
                 }
                 case 4:
@@ -136,7 +136,7 @@ namespace ConsoleApplication
                         Console.WriteLine("EXCEPTION: " + exception.Message);
                         Console.WriteLine("---------------------------------------------");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 case 5:
@@ -169,7 +169,7 @@ namespace ConsoleApplication
                             ObjectManager.CreateNewFile(input);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("SUCCESS! Your file has been created.");
-                            DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                            DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                         }
 
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -181,7 +181,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! Either the file already exists or you have entered an invalid file path!");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Delete File
@@ -196,7 +196,7 @@ namespace ConsoleApplication
 
                     if(input == "c" || input == "C")
                     {
-                        DynamicMenu.Menu(DynamicMenu.filesMenu, 1);
+                        DynamicMenu.Menu(DynamicMenuOption.filesMenu, 1);
                     }
                         
                     try
@@ -210,7 +210,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! This file path does not exist!");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Move File
@@ -234,7 +234,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR there is already a file at the destination path, OR you have entered an invalid file path!");
                     } 
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Rename file
@@ -260,7 +260,7 @@ namespace ConsoleApplication
                         Console.WriteLine("ERROR! The file you are trying to move doesn't exist, OR a file already exists in that location, OR you have entered an invalid file path!");
                         
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Read text from file
@@ -280,7 +280,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to read doesn't exist!");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Write text to file
@@ -303,7 +303,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The file you are trying to write to doesn't exist!");
                     }  
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //search file for text
@@ -322,7 +322,7 @@ namespace ConsoleApplication
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Clear();
                             Console.WriteLine(input1 + " DOES include the phrase '" + input2 + "'");
-                            DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                            DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                         }
 
                         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -334,7 +334,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! File path cannot be found!");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Return to menu
@@ -342,7 +342,7 @@ namespace ConsoleApplication
                 {
                     Console.Clear();
                     Console.WriteLine("MAIN MENU");
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
             }
@@ -370,7 +370,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The requested directory path is invalid, OR already exists!");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Delete Folder
@@ -383,7 +383,7 @@ namespace ConsoleApplication
 
                     if(input == "c" || input == "C")
                     {
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                        DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     }
 
                     try
@@ -394,7 +394,7 @@ namespace ConsoleApplication
                         {   
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("SUCCESS! The specified folder has been removed.");
-                            DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                            DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                         }
 
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -405,7 +405,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to remove does not exist");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Move FOLDER
@@ -429,7 +429,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to move does not exist, OR the destination path already exists!");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Rename FOLDER
@@ -446,7 +446,7 @@ namespace ConsoleApplication
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Your folder is already named '" + input2 + "'! No changes made.");
-                        DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                        DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     }
                     
                     try
@@ -460,7 +460,7 @@ namespace ConsoleApplication
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("ERROR! The folder you are trying to move does not exist, OR the destination path already exists.");
                     }
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
                 //Return to menu
@@ -468,7 +468,7 @@ namespace ConsoleApplication
                 {
                     Console.Clear();
                     Console.WriteLine("MAIN MENU");
-                    DynamicMenu.Menu(DynamicMenu.mainMenu, 1);
+                    DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
                     break;
                 }
             }

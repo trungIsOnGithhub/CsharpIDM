@@ -3,18 +3,31 @@ using System.Threading;
 
 namespace ConsoleApplication
 {
-    public static class DynamicMenu
+    public static class DynamicMenuOption
     {
         public static readonly string[] mainMenu = {
             "Get list of files in directory",
             "Get list of folders in directory",
             "Manage files", "Manage folders",
-            "Generate index file", "Quit" 
+            "Generate index file", "Custom Loading Animation",
+            "Cocktail API", "Quadratic Equation Generator",
+            "Quit"
         };
-        public static readonly string[] filesMenu = {"Create file", "Delete file", "Move file", "Rename File", "Read text from file", "Write text to file", "Search file for text", "Return to MAIN MENU"};
-        public static readonly string[] foldersMenu = {"Create folder", "Delete folder", "Move Folder", "Rename Folder", "Return to MAIN MENU", ""};
 
-        private static int selectedItemIndex = 0;
+        public static readonly string[] filesMenu = {
+            "Create file", "Delete file", "Move file", "Rename File",
+            "Read text from file", "Write text to file","Search file for text",
+            "Return to MAIN MENU"
+        };
+
+        public static readonly string[] foldersMenu = {
+            "Create folder", "Delete folder", "Move Folder",
+            "Rename Folder", "Return to MAIN MENU"
+        };
+    }
+    public static class DynamicMenu
+    {
+        private static int selectedItemIndex = default;
 
         public static void Menu(string[] array, int menu)
         {
@@ -51,7 +64,7 @@ namespace ConsoleApplication
                 {
                     case ConsoleKey.UpArrow:
                     {
-                        if(selectedItemIndex > 0)
+                        if (selectedItemIndex > 0)
                         {
                             selectedItemIndex--;
                         }
@@ -82,26 +95,19 @@ namespace ConsoleApplication
                 }
                 Console.SetCursorPosition(0, topOffset);
             }
+    
             Console.SetCursorPosition(0, bottomOffset);
             Console.CursorVisible = true;
 
-            ConsoleAnimation spin = new ConsoleAnimation();
-            bool playingAnimation = true;
-
-            while (playingAnimation)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Thread.Sleep(30);
-                playingAnimation = spin.animation();
-            }
+            (new ConsoleAnimation{ animatedChar = '/' }).play(40);
             
             selectOptions(selectedItemIndex, menu);
         }
 
 
-        public static void selectOptions(int selectedItemIndex, int menu)
+        private static void selectOptions(int selectedItemIndex, int menu)
         {
-            switch(menu)
+            switch (menu)
             {
                 case 1:
                 {

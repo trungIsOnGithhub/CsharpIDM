@@ -27,48 +27,51 @@ namespace ConsoleApplication
 
             StringBuilder charBuffer = new StringBuilder(String.Empty);
 
-            while (true) {
-                ConsoleKeyInfo keyPress = Console.ReadKey(true);
+            DynamicMenu.Menu(DynamicMenuOption.mainMenu, 1);
+
+            // while (true) {
+            //     ConsoleKeyInfo keyPress = Console.ReadKey(true);
                 
-                char keyRead = Convert.ToChar(keyPress.Key);
+            //     char keyRead = Convert.ToChar(keyPress.Key);
 
-                char keyReadFiltered = Utilities.filterKey(keyRead);
+            //     char keyReadFiltered = Utilities.filterKey(keyRead);
                 
-                charBuffer.Append(keyRead);
+            //     charBuffer.Append(keyRead);
 
-                Console.Write(keyRead);
+            //     Console.Write(keyRead);
                 
-                SpaceKeyEventPublisher publisherForSpaceKey = new();
-                EnterKeyEventPublisher publisherForEnterKey = new();
+            //     SpaceKeyEventPublisher publisherForSpaceKey = new();
+            //     EnterKeyEventPublisher publisherForEnterKey = new();
 
-                var subcriber = GenericFactory<
-                    (SpaceKeyEventPublisher, EnterKeyEventPublisher),
-                    KeyBoardEventSubcriber
-                >.CreateWith2Args( (publisherForSpaceKey, publisherForEnterKey) );
+            //     // var subcriber = GenericFactory<
+            //     //     (SpaceKeyEventPublisher, EnterKeyEventPublisher),
+            //     //     KeyBoardEventSubcriber
+            //     // >.CreateWith2Args( (publisherForSpaceKey, publisherForEnterKey) );
 
-                subcriber.SubcribeEventSpaceKey();
+            //     // subcriber.SubcribeEventSpaceKey();
 
-                if (keyPress.Key == ConsoleKey.Enter)
-                {
-                    // string line = Console.ReadLine();
-                    // Console.WriteLine();
-                    // CocktailModel model = new CocktailModel { VersionString = "v1" };
-                    // model.getCocktailByFirstLetter(charBuffer[0]);
-                    // Console.WriteLine();
+            //     if (keyPress.Key == ConsoleKey.Enter)
+            //     {
+            //         // string line = Console.ReadLine();
+            //         // Console.WriteLine();
+            //         // CocktailModel model = new CocktailModel { VersionString = "v1" };
+            //         // model.getCocktailByFirstLetter(charBuffer[0]);
+            //         // Console.WriteLine();
 
-                    // MessageModel.save(charBuffer.ToString());
+            //         // MessageModel.save(charBuffer.ToString());
 
-                    // EnterKeyEventPublisher.ReceiveKey();
+            //         // EnterKeyEventPublisher.ReceiveKey();
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Enter Pressed: {charBuffer.ToString()}");
-                    // break;
-                }
-                else if (keyPress.Key == ConsoleKey.Spacebar)
-                {
-                    publisherForSpaceKey.ReceiveKey();
-                }
-            }
+            //         Console.WriteLine();
+            //         Console.WriteLine($"Enter Pressed: {charBuffer.ToString()}");
+            //         // break;
+            //     }
+            //     else if (keyPress.Key == ConsoleKey.Spacebar)
+            //     {
+                    
+            //         // publisherForSpaceKey.ReceiveKey();
+            //     }
+            // }
         }
     }
 }

@@ -6,6 +6,8 @@
 
 ## LinQ
 
+LINQ - Language Integrated Query is the integration of query capabilities directly into the C# language.
+
 ```cs
     return rootList
                 .SelectMany(
@@ -20,7 +22,11 @@
     return (from child in Childs select child.Value);
 ```
 
+With LINQ, type checking at compile time or IntelliSense support is added, and query is first-class language construct, like classes, methods, events.
+
 ## Delegates
+
+Delegates provide late binding mechanism in .NET == an procedure where the caller supplies a part of the procedure.
 
 ```cs
     public delegate void EnterKeyEventHandler (object sender, EnterKeyEventArgs eArgs);
@@ -38,7 +44,15 @@
     )
 ```
 
+#### Multicast Delegate
+
+Multiple function object can be assigned to one  using the +, += operator to form a list of the assigned delegates.
+
+When called, it invokes the chain of delegates in order. Only delegates of same type can be combined.
+
 ## Generics
+
+Like other languages, Generic introduce concept of type parameter to .NET. It can be applied to Classes, Methods, Types.
 
 ```cs
  class EnumerablePrinter<T>   
@@ -56,6 +70,8 @@
         }
 ```
 
+Literally, with Generics, we can define a class that defer the the parameter specifying to client code without involving runtime casting or boxing.
+
 ### Bounded Generics
 
 ```cs
@@ -66,6 +82,10 @@
 ```
 
 ## Events
+
+Events enable a class or object to notify other classes or objects when something of interest occurs. It provide more official way to implement Pattern: Publisher - Subscriber
+
+In a typical C# application, you subscribe to events raised by buttons and list boxes.
 
 ```cs
 class EnterKeyEventPublisher : KeyEventPublisher
@@ -81,6 +101,17 @@ class EnterKeyEventPublisher : KeyEventPublisher
         protected virtual void OnKeyPressed(SpaceKeyEventArgs eArgs)
 ...
 ```
+
+## Extension Method
+
+We can add methods to types without creating new derived type, recompiling, or modifying original type.
+```cs
+    public static string Name(this string filePath)
+    {...}
+...
+```
+Extension methods are static methods, but they can be called as if they were instance methods.
+Some methods from LinQ `GroupBy, OrderBy, Average` from `IEnumerable` interface are example.
 
 ## Tuple (> C# 7)
 

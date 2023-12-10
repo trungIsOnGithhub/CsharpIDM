@@ -2,6 +2,8 @@
 
 > Development using .NET 6 SDK, C# 10 Language Version
 
+> Reference: [Microsoft Learn](https://learn.microsoft.com) - for educational purpose - no licensing
+
 #### Example For Some Fundamentals C# Concepts
 
 ## LinQ

@@ -4,7 +4,19 @@
 
 > Reference: [Microsoft Learn](https://learn.microsoft.com) - for educational purpose - no licensing
 
-#### Example For Some Fundamentals C# Concepts
+#### Example For Some Fundamentals C# Concepts/.NET features
+
+## Partial Class
+
+Make it possible to split the definition of a class, a struct, an interface or a method in many files.
+
+```cs
+    public static partial class Options
+    {
+        ...
+```
+
+Together with the namespace system, this aid code structuring and refactoring more comfortable even for many people.
 
 ## LinQ
 

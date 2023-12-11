@@ -16,7 +16,7 @@ Make it possible to split the definition of a class, a struct, an interface or a
         ...
 ```
 
-Together with the namespace system, this aid code structuring and refactoring more comfortable even for many people.
+Together with the namespace system, this aid code structuring and refactoring more comfortable even for many people working on same codebase.
 
 ## LinQ
 

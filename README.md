@@ -2,7 +2,9 @@
 
 > Development using .NET 6 SDK, C# 10 Language Version
 
-> Reference: [Microsoft Learn](https://learn.microsoft.com) - for educational purpose - no licensing
+> Reference: [Microsoft Learn](https://learn.microsoft.com) - for educational purpose, [CodeMaze](https://code-maze.com/csharp-unit-of-work-pattern/), [Blog](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iserviceprovider-and-how-is-it-built
+)
+
 
 #### Example For Some Fundamentals C# Concepts/.NET features
 
@@ -150,10 +152,28 @@ Some methods from LinQ `GroupBy, OrderBy, Average` from `IEnumerable` interface 
      };
 ```
 
+## Nullable Types
+
+```cs
+...
+    public class UnitOfWork : IUnitOfWork
+    {
+        private ITransaction? _currentTransaction;
+
+        public UnitOfWork(IDatabase database)
+...
+```
+
 ######  ```Dictionary<K, V>``` vs ```Hashtable``` ??
 
 - ```Dictionary<K, V>``` provide generics and type-saftety on element, avoid casting and random object
 > In fact, generic Dictionary was a copy of Hashtable - [MS Reference](https://referencesource.microsoft.com/#mscorlib/system/collections/hashtable.cs)
+
+
+#### [Repository Pattern in ASP Net Core API](https://code-maze.com/net-core-web-development-part4/)
+
+### [Dependency Injection in C#](https://xuanthulab.net/dependency-injection-di-trong-c-voi-servicecollection.html)
+
 
 This console application was created for the purpose of learning the C# language. It enable user with some(and maybe more) functionalities:
 

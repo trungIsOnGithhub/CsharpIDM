@@ -1,7 +1,9 @@
 // Repository Design Pattern = data access, handle operation with DB
 // Unit of Work ~ Transaction
 // epository is class for entity with all database operations
+using System;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Patterns
 {
@@ -18,7 +20,7 @@ namespace Patterns
     public interface IStore : IDatabase
     {
         IQueryable<Tentity> GetSet<Tentity>() where Tentity : Entity;
-        void Add(Tentity newOrder) where Tentity :Entity;
+        void Add<Tentity>(Tentity newOrder) where Tentity :Entity;
     }
     public interface IOrderRepository
     {
@@ -117,6 +119,33 @@ namespace Patterns
         public void Add<Tentity>(Tentity order) where Tentity : Entity
         {
             _orders.Add(order as Order);
+        }
+    }
+
+    public class RepositoryUoWExample
+    {
+        public static void Run()
+        {
+            var services = new ServiceCollection();
+
+            services.AddScoped<DummyStoreDB>();
+            services.AddScoped<IDatabase, DummyStoreDB>(sp => sp.GetRequiredService<DummyStoreDB>());
+            services.AddScoped<IStore, DummyStoreDB>(sp => sp.GetRequiredService<DummyStoreDB>());
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
+            Console.WriteLine($"Registered Services");
+
+            var provider = services.BuildServiceProvider();;
+
+            var repository = provider.GetRequiredService<IOrderRepository>();
+            var unitOfWork = provider.GetRequiredService<IUnitOfWork>();
+
+            unitOfWork.BeginTransactionAsync();
+            repository.Add(new Order());
+            unitOfWork.CommitAsync();
+
+            Console.WriteLine($"Created An Unit Of Work");
         }
     }
 }

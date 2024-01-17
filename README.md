@@ -1,6 +1,6 @@
 ## File Manager Console Application
 
-> Development using .NET 6 SDK, C# 10 Language Version
+> Development using .NET 6 platform, C# 10 Language Version
 
 > Reference: [Microsoft Learn](https://learn.microsoft.com) - for educational purpose, [CodeMaze](https://code-maze.com/csharp-unit-of-work-pattern/), [Blog](https://www.stevejgordon.co.uk/aspnet-core-dependency-injection-what-is-the-iserviceprovider-and-how-is-it-built
 )
